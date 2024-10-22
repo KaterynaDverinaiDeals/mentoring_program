@@ -14,11 +14,14 @@ public class Demo {
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
+                new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name())
+
         );
         // Filter users whose passwords do not contain special characters
         List<User> noSpecialCharUsers = users.stream()
-                .filter(user -> user.getPassword().matches("[a-zA-Z0-9]*"))
+                .filter(user -> user.getPassword()
+                        .matches("[a-zA-Z0-9]*"))
                 .collect(Collectors.toList());
         System.out.println("Users without special characters in passwords:\n" +
                 noSpecialCharUsers.stream()
