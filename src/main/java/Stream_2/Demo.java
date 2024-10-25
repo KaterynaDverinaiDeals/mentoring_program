@@ -17,6 +17,9 @@ public class Demo {
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
+                new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
+                new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
+                new User(faker.name().firstName(), faker.internet().password(), faker.company().name()),
                 new User(faker.name().firstName(), faker.internet().password(), faker.company().name())
         );
 
