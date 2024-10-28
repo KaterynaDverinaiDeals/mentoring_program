@@ -2,9 +2,9 @@ package Stream_2;
 
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Demo {
     // Static Faker instance shared across all methods
@@ -15,7 +15,7 @@ public class Demo {
 
         // Call all tasks as separate methods
         printUsers(users);
-        printUsersWithSpecialCharacters(users);
+        printUsersWithoutSpecialCharacters(users);
         printPasswordEndingWith123(users);
         printNoSecretPassword(users);
         printAllPasswordsContainLettersAndDigits(users);
@@ -28,11 +28,9 @@ public class Demo {
 
     // Generate list of users
     private static List<User> generateUsers(int count) {
-        List<User> users = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            users.add(new User(faker.name().firstName(), faker.internet().password(), faker.company().name()));
-        }
-        return users;
+        return IntStream.range(0,count)
+                .mapToObj(i-> new User(faker.name().firstName(),faker.internet().password(),faker.company().name()))
+                .collect(Collectors.toList());
     }
 
     //All users
@@ -41,7 +39,7 @@ public class Demo {
     }
 
     // Filter users whose passwords do not contain special characters
-    private static void printUsersWithSpecialCharacters(List<User> users) {
+    private static void printUsersWithoutSpecialCharacters(List<User> users) {
         List<User> noSpecialCharUsers = filterUsersWithoutSpecialChars(users);
         System.out.println("Users without special characters in passwords:\n" +
                 noSpecialCharUsers.stream()
@@ -60,21 +58,27 @@ public class Demo {
     public static void printPasswordEndingWith123(List<User> users) {
         boolean endsWith123 = users.stream()
                 .anyMatch(user -> user.getPassword().endsWith("123"));
-        System.out.println("Password ending with '123': " + endsWith123);
+
+        var exists = endsWith123 ? "exists" : "doesn't exist";
+        System.out.println("Password ending with '123': " + exists);
     }
 
     // Check if there is no password "secret"
     private static void printNoSecretPassword(List<User> users) {
         boolean noSecretPassword = users.stream()
                 .noneMatch(user -> user.getPassword().equals("secret"));
-        System.out.println("Password 'secret' is absent: " + noSecretPassword);
+
+        var message = noSecretPassword ? "is absent" : "is present";
+        System.out.println("Password 'secret': " + message);
     }
 
     // Check if all passwords contain both: letters and digits
     private static void printAllPasswordsContainLettersAndDigits(List<User> users) {
         boolean allPasswordsContainLettersAndDigits = users.stream()
                 .allMatch(user -> user.getPassword().matches(".*[a-zA-Z].*") && user.getPassword().matches(".*[0-9].*"));
-        System.out.println("All passwords contain letters and digits: " + allPasswordsContainLettersAndDigits);
+
+        var message = allPasswordsContainLettersAndDigits ? "yes" : "no";
+        System.out.println("All passwords contain letters and digits: " + message);
     }
 
     // Find the first user whose name starts with 's'
