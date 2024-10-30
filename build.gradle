@@ -1,3 +1,5 @@
+import org.gradle.api.plugins.internal.DefaultJavaApplication
+
 plugins {
     id 'java'
     id 'application'
@@ -13,7 +15,9 @@ repositories {
 dependencies {
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
 }
-application {
-    mainClass = 'Stream_2.Demo'
+test {
+    useTestNG()
 }
