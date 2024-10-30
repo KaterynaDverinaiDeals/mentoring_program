@@ -8,7 +8,7 @@ public class HomeTask7 {
         char[] carray = str.toCharArray();
         //Declaring a StringBuilder object. StringBuilder is used to create strings directly in memory
         StringBuilder result = new StringBuilder();
-        // Array for tracking characters (ASCII range) - щось НЕ ЗРОЗУМІЛЕ для мене,нагуглила і використала
+        // Array for tracking characters (ASCII range)
         //ASCII is a 7-bit character set containing 128 characters.
         boolean[] seen = new boolean[256];
         //Iterating through each character of the string

@@ -1,6 +1,6 @@
 package HomeTaskSession4;
-//Given: String text = "Текст з певною кількістю речень";
-//Count how much sentences ends with letter “e”
+//Given: String text = "";
+//Count how much sentences ends with letter
 
 public class HomeTask3 {
     public static void main(String[] args) {

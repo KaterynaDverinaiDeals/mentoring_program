@@ -44,7 +44,7 @@ public class Phone extends Device {
 
     //constructor with 3 params (number, model, weight). ??? (inside u call the constructor with 2 params)
     public Phone(String number, String model, String weight) {
-        //Call the Device constructor with the model parameter ??? тут не розумію до кінця навіщо кожного разу викликати super(model)
+        //Call the Device constructor with the model parameter
         super(model);
         this.number = number;
         this.model = model;

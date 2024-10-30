@@ -1,10 +1,10 @@
 package Practice;
-// Напиши програму, яка приймає масив цілих чисел і знаходить їхню суму. Використовуй цикл for each.
+// Write a program that takes an array of integers and finds their sum. Use a for-each loop.
 // int[] numbers = {1, 2, 3, 4, 5};
-// Очікуваний результат: 15
+// Expected result: 15
 
 public class Ex1 {
-    // Варіант рішення 1
+
 //    public static void main(String[] args) {
 //        int array[] = {1, 2, 3, 4, 5};
 //        int sum = 0;
