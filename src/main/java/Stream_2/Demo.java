@@ -1,5 +1,7 @@
 package Stream_2;
 
+import com.github.javafaker.Faker;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
