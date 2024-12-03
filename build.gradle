@@ -20,6 +20,8 @@ dependencies {
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
     implementation 'io.rest-assured:rest-assured-all:5.4.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.1'
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
 
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     testImplementation 'org.projectlombok:lombok:1.18.30'

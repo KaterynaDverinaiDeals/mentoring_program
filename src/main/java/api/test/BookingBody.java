@@ -1,4 +1,4 @@
-package ApiTest;
+package api.test;
 
 import lombok.*;
 
@@ -13,7 +13,7 @@ public class BookingBody {
     private String lastname;
     private Float totalprice;
     private boolean depositpaid;
-    private BookingDates bookingDates;
+    private BookingDates bookingdates;
     private String additionalneeds;
 
 }

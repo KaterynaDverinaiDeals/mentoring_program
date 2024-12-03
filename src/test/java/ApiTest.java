@@ -1,49 +1,13 @@
 
-
+import api.test.*;
 import org.testng.annotations.Test;
-
-import static io.restassured.http.ContentType.JSON;
+import api.test.BookingDataProvider;
 
 public class ApiTest {
-    private static final String URI = "https://restful-booker.herokuapp.com";
+    private BookingDataProvider bookingDataProvider = new BookingDataProvider();
+    private static final String AUTH_URI = "https://restful-booker.herokuapp.com";
 
-
-    public String getBookings() {
-        return RestAssured.given()
-                .when()
-                .baseUri(URI)
-                .basePath("/booking")
-                .contentType(JSON)
-                .when()
-                .get()
-                .then()
-                .extract().body().asString();
-    }
-
-    public String getBooking(String id) {
-        return RestAssured.given()
-                .when()
-                .baseUri(URI)
-                .basePath("/booking {bookingId}")
-                .contentType(JSON)
-                .pathParam("bookingId", id)
-                .when()
-                .get(id)
-                .then()
-                .extract().body().asString();
-    }
-        public String createBooking (BookingBody bookingBody){
-            return RestAssured.given()
-                    .when()
-                    .baseUri(URI)
-                    .basePath("/booking")
-                    .contentType(JSON)
-                    .body(bookingBody)
-                    .post()
-                    .then()
-                    .extract().body().asString();
-        }
- @Test
+    @Test
     public void testCreateBooking() {
         BookingDates dates = BookingDates.builder()
                 .checkin("2024-11-22")
@@ -55,11 +19,51 @@ public class ApiTest {
                 .lastname("Chornyi")
                 .totalprice(100.0f)
                 .depositpaid(true)
-                .bookingDates(dates)
+                .bookingdates(dates)
                 .additionalneeds("Breakfast")
                 .build();
 
-        String response = createBooking(booking);
+        var response = bookingDataProvider.createBooking(booking);
         System.out.println("Response: " + response);
+    }
+
+    @Test
+    public void testUpdateBooking() {
+        BookingDates dates = BookingDates.builder()
+                .checkin("2024-11-22")
+                .checkout("2024-11-25")
+                .build();
+
+        BookingBody booking = BookingBody.builder()
+                .firstname("Ivan")
+                .lastname("Brown")
+                .totalprice(100.0f)
+                .depositpaid(true)
+                .bookingdates(dates)
+                .additionalneeds("Breakfast")
+                .build();
+
+
+        var createdBooking = bookingDataProvider.createBooking(booking);
+        System.out.println("Created Booking: " + createdBooking);
+
+        UserBody user = new UserBody("admin", "password123");
+        String token = bookingDataProvider.getToken(user);
+
+        BookingBody updatedBookingItem = BookingBody.builder()
+                .firstname("Iryna")
+                .lastname("Brown")
+                .totalprice(200.0f)
+                .depositpaid(false)
+                .bookingdates(dates)
+                .additionalneeds("Lunch")
+                .build();
+
+        var response = bookingDataProvider.updateBooking(
+                createdBooking.getBookingid(),
+                updatedBookingItem,
+                token
+        );
+        System.out.println("Updated Response: " + response);
     }
 }
