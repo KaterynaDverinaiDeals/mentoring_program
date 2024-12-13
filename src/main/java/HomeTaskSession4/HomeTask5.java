@@ -7,7 +7,6 @@ public class HomeTask5 {
         String text = "gibblegabbler";
         // Is a for loop that is used to loop through each character in the text string
         for (int i = 0; i < text.length(); i++) {
-            // Extracts a character from the text string at position “i” and stores it in variable c of char type
             char c = text.charAt(i);
             // Check if a character occurs only once
             if (text.indexOf(c) == text.lastIndexOf(c)) {

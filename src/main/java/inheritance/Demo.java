@@ -25,8 +25,6 @@ public class Demo {
 
         try {
             phone1.receiveCall("Diogo");
-            // Питання: як тут зробити так, щоб код не "падав" на "Olga 48", а відпрацьовував далі і перевіряв наступний тел.?
-            // Відповідь: обробляти кожен виклик receiveCall в окремому блоці try-catch
             phone2.receiveCall("Olga 48");
             phone1.receiveCall("Alibaba", "0800-212-2008");
             phone2.receiveCall("Spammer_555", "097-888-22-52");
