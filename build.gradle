@@ -16,6 +16,8 @@ dependencies {
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
     // https://mvnrepository.com/artifact/org.testng/testng
     implementation group: 'org.testng', name: 'testng', version: '7.10.2'
+    // https://mvnrepository.com/artifact/com.codeborne/selenide
+    implementation group: 'com.codeborne', name: 'selenide', version: '7.6.1'
 
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
