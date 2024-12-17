@@ -4,6 +4,10 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$x;
+
 public class LoginPage {
     public static final String loginInputFieldXpaths = "";
 
@@ -27,9 +31,23 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage clickLoginButton (){
+    public LoginPage clickLoginButton() {
         LoginButton.click();
         return this;
     }
 
-}
+    public LoginPage verifyErrorMessageIsDisplayed(String expectedMessage) {
+        $x("//span[@id='message']")
+                .shouldBe(visible)
+                .shouldHave(text(expectedMessage));
+        return this;
+    }
+
+//    public LoginPage verifyErrorMessageForInvalidCredentials(String expectedMessage) {
+//        $x("//span[@id='message']")
+//                .shouldBe(visible)
+//                .shouldHave(text(expectedMessage));
+//        return this;
+//}
+    }
+
